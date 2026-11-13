@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מנגינה במסלול</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- מסך בחירת שיר -->
+<main id="screen-select" class="screen active">
+  <h1>מנגינה במסלול</h1>
+  <p class="sub">שרים או מזמזמים, והמנגינה הופכת למסלול</p>
+  <div id="song-grid" class="song-grid"></div>
+</main>
+
+<!-- התאמת השיר לקול -->
+<main id="screen-setup" class="screen">
+  <button id="btn-setup-back" class="btn round ghost" aria-label="חזרה">→</button>
+  <h2 id="setup-title"></h2>
+  <section class="card">
+    <h3>מתאימים את השיר לקול</h3>
+    <div class="key-row">
+      <button id="btn-lower" class="btn">▼ נמוך יותר</button>
+      <div id="key-label" class="key-label"></div>
+      <button id="btn-higher" class="btn">▲ גבוה יותר</button>
+    </div>
+    <div class="row">
+      <button id="btn-sample" class="btn">🔊 השמע דוגמה</button>
+      <button id="btn-hum" class="btn">🎵 זמזמו צליל נוח</button>
+    </div>
+    <p id="hum-status" class="hint" aria-live="polite">אפשר להתחיל מיד, או לזמזם צליל נוח כדי שנבחר סולם מתאים.</p>
+  </section>
+  <div class="start-row">
+    <button id="btn-start-mic" class="btn big primary">🎤 מתחילים לשיר</button>
+    <button id="btn-start-demo" class="btn big">⌨️ מצב הדגמה</button>
+  </div>
+  <p id="mic-note" class="note" hidden>לא קיבלנו גישה למיקרופון. אפשר לשחק במצב הדגמה, עם המקלדת או עם כפתורי התווים.</p>
+  <p class="hint small">גובה הקול מעובד במכשיר בלבד. שום דבר לא מוקלט ולא נשלח.</p>
+</main>
+
+<!-- המשחק -->
+<main id="screen-play" class="screen">
+  <canvas id="stage"></canvas>
+  <div class="hud">
+    <button id="btn-exit" class="btn round" aria-label="יציאה">✕</button>
+    <button id="btn-again" class="btn">🔊 שמע שוב</button>
+    <button id="btn-beat" class="btn" aria-pressed="true">🥁 פעמה</button>
+    <span class="spacer"></span>
+    <button id="btn-key-down" class="btn round" aria-label="סולם נמוך יותר">▼</button>
+    <button id="btn-key-up" class="btn round" aria-label="סולם גבוה יותר">▲</button>
+  </div>
+  <div id="status" class="status" aria-live="polite"></div>
+  <div id="wait-panel" class="panel" hidden>
+    <button id="btn-wait-again" class="btn big">🔊 שמע שוב</button>
+    <button id="btn-retry" class="btn big primary">🎤 נסה שוב</button>
+  </div>
+  <div id="done-panel" class="panel col" hidden>
+    <div class="done-title">כל הכבוד! 🎉</div>
+    <div class="row">
+      <button id="btn-replay" class="btn big primary">↻ שוב</button>
+      <button id="btn-done-exit" class="btn big">לכל השירים</button>
+    </div>
+  </div>
+  <div id="demo-keys" class="demo-keys" hidden></div>
+</main>
+
+<!-- נתוני שירים (נפרדים מהמנוע) -->
+<script src="js/songs/registry.js"></script>
+<script src="js/songs/yonatan.js"></script>
+<script src="js/songs/upcoming.js"></script>
+<!-- מנוע -->
+<script src="js/engine/run.js"></script>
+<script src="js/engine/pitch.js"></script>
+<script src="js/engine/audio.js"></script>
+<script src="js/engine/render.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
